@@ -46,14 +46,17 @@ So session is used to maintain user information across requests.
 
 We use sessions when application needs to remember users.
 
-# Common 			                Use Cases
-1. Application		                Session Usage
-2. Banking App		                Logged-in user
-3. E-commerce		                Shopping cart
-4. Student Portal		            Student login
-5. Admin Dashboard		            Admin authentication
-6. Online Exam		                Candidate tracking
-7. Social Media		                User session
+| # | Application / System | Session Usage                                            |
+| - | -------------------- | -------------------------------------------------------- |
+| 1 | Application          | Maintain user login/session information                  |
+| 2 | Banking App          | Track the logged-in user during banking activities       |
+| 3 | E-commerce           | Maintain shopping cart and user session                  |
+| 4 | Student Portal       | Maintain student login and session information           |
+| 5 | Admin Dashboard      | Maintain admin authentication and access                 |
+| 6 | Online Exam          | Track the logged-in candidate during the exam            |
+| 7 | Social Media         | Maintain user login and session while using the platform |
+
+
 
 # What is Session Management?
 
@@ -77,9 +80,15 @@ Creating, maintaining, validating, and destroying user sessions.
 5. Browser sends Session ID in every request
 6. Server identifies user using Session ID
 
-# Session			                      Cookie
-Stored on server	                  Stored in browser
-More secure		                      Less secure
-Can store objects	                  Stores text only
-Temporary		                        Can persist longer
+| **Session**                                                        | **Cookie**                                                     |
+| ------------------------------------------------------------------ | -------------------------------------------------------------- |
+| Stored on the **server**                                           | Stored in the **browser/client**                               |
+| Generally **more secure** because data is maintained on the server | Generally **less secure** because data is stored on the client |
+| Can store **objects and complex data**                             | Mainly stores **small text/string values**                     |
+| Usually **temporary** and ends after timeout or logout             | Can **persist longer**, depending on its expiration time       |
+| Suitable for **login/authentication information**                  | Suitable for **preferences and small client-side data**        |
+| Consumes **server memory/resources**                               | Does not consume server memory for storing the cookie data     |
+| Session ID is commonly sent to the browser                         | Cookie itself is sent between browser and server               |
+| Example: `HttpSession` in Java                                     | Example: `Cookie` in Java                                      |
+
 
