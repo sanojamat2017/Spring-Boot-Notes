@@ -24,7 +24,7 @@ So session is used to maintain user information across requests.
 3. Cart data
 4. Preferences
 
-# This is done using Session Management.
+This is done using Session Management.
 
 # Why Do We Need Session?
 
@@ -92,3 +92,183 @@ Creating, maintaining, validating, and destroying user sessions.
 | Example: `HttpSession` in Java                                     | Example: `Cookie` in Java                                      |
 
 
+# Dependencies
+
+Add:
+
+1. Spring Web
+2. Thymeleaf
+
+
+src
+ └── main
+      ├── java
+      │    └── com.example.demo
+      │           ├── controller
+      │           │      └── HomeController.java
+      │           └── DemoApplication.java
+      │
+      └── resources
+            ├── templates
+            │      ├── login.html
+            │      └── home.html
+            │
+            └── application.properties
+
+
+import jakarta.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+public class HomeController {
+
+    // Login Page
+    @GetMapping("/")
+    public String loginPage() {
+        return "login";
+    }
+
+    // Login Process
+    @PostMapping("/login")
+    public String login(
+            @RequestParam String username,
+            @RequestParam String password,
+            HttpSession session,
+            Model model) {
+
+        // Dummy validation
+        if(username.equals("admin") && password.equals("1234")) {
+
+            // Store data in session
+            session.setAttribute("username", username);
+
+            return "redirect:/home";
+        }
+
+        model.addAttribute("error", "Invalid Username or Password");
+
+        return "login";
+    }
+
+    // Home Page
+    @GetMapping("/home")
+    public String home(HttpSession session,
+                       Model model) {
+
+        String username =
+                (String) session.getAttribute("username");
+
+        // If session not available
+        if(username == null) {
+            return "redirect:/";
+        }
+
+        model.addAttribute("username", username);
+
+        return "home";
+    }
+
+    // Logout
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+
+        // Destroy session
+        session.invalidate();
+
+        return "redirect:/";
+    }
+}
+
+# login.html
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login</title>
+</head>
+
+<body>
+
+<h2>Login Page</h2>
+
+<form action="/login" method="post">
+
+    Username:
+    <input type="text"
+           name="username">
+
+    <br><br>
+
+    Password:
+    <input type="password"
+           name="password">
+
+    <br><br>
+
+    <button type="submit">
+        Login
+    </button>
+
+</form>
+
+<p style="color:red"
+   th:text="${error}"></p>
+
+</body>
+</html>
+
+
+# home.html
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+
+<h2>Welcome</h2>
+
+<h3 th:text="${username}"></h3>
+
+<a href="/logout">
+    Logout
+</a>
+
+</body>
+</html>
+
+Important Session Methods
+
+| Method            | Purpose          |
+| ----------------- | ---------------- |
+| setAttribute()    | Store data       |
+| getAttribute()    | Read data        |
+| removeAttribute() | Remove one value |
+| invalidate()      | Destroy session  |
+
+# application.properties
+
+server.servlet.session.timeout=30m
+
+# Advantages of Session
+
+ Easy login management
+ Secure user tracking
+ Stores user-specific data
+ Simple implementation in Spring Boot
+
+# Disadvantages of Session
+
+ Uses server memory
+ Large applications need distributed sessions
+ Session timeout handling required
+
+# Why Session Needed?
+
+Because HTTP is stateless.
