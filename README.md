@@ -47,13 +47,13 @@ So session is used to maintain user information across requests.
 We use sessions when application needs to remember users.
 
 # Common 			                Use Cases
-Application		              Session Usage
-Banking App		              Logged-in user
-E-commerce		              Shopping cart
-Student Portal		          Student login
-Admin Dashboard		          Admin authentication
-Online Exam		              Candidate tracking
-Social Media		            User session
+1. Application		                Session Usage
+2. Banking App		                Logged-in user
+3. E-commerce		                Shopping cart
+4. Student Portal		            Student login
+5. Admin Dashboard		            Admin authentication
+6. Online Exam		                Candidate tracking
+7. Social Media		                User session
 
 # What is Session Management?
 
