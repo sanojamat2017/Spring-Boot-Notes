@@ -139,20 +139,21 @@ There are several important cookie concepts.
 
 Cookie exists until the browser session ends.
 
-Browser opens
-     ↓
-Cookie created
-     ↓
-Browser closed
-     ↓
+Browser opens\
+     ↓\
+Cookie created\
+     ↓\
+Browser closed\
+     ↓\
 Cookie normally removed
+
 2. Persistent Cookie
 
 Has an expiration time.
 
 Example:
 
-username=Sanoj
+username=Sanoj\
 Max-Age=3600
 
 It can remain after the browser is closed until it expires.
