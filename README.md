@@ -105,15 +105,15 @@ A cookie is a small piece of data stored in the user's web browser by the server
 
 For example, when a user submits:
 
-Name     : Sanoj
-Email    : sanoj@gmail.com
-City     : Mumbai
+Name     : Sanoj\
+Email    : sanoj@gmail.com\
+City     : Mumbai\
 
 Spring Boot can ask the browser to store:
 
-username = Sanoj
-email = sanoj@gmail.com
-city = Mumbai
+username = Sanoj\
+email = sanoj@gmail.com\
+city = Mumbai\
 
 The browser stores this information and automatically sends the cookie back to the server with later requests to the same site.
 
