@@ -98,3 +98,94 @@ Add:
 
 1. Spring Web
 2. Thymeleaf
+
+# 1. What is a Cookie?
+
+A cookie is a small piece of data stored in the user's web browser by the server.
+
+For example, when a user submits:
+
+Name     : Sanoj
+Email    : sanoj@gmail.com
+City     : Mumbai
+
+Spring Boot can ask the browser to store:
+
+username = Sanoj
+email = sanoj@gmail.com
+city = Mumbai
+
+The browser stores this information and automatically sends the cookie back to the server with later requests to the same site.
+
+2. Why Do We Need Cookies?
+
+Cookies are useful when the browser needs to remember something between requests.
+
+| Cookie               | Session                                                 | Database                        |
+| -------------------- | ------------------------------------------------------- | ------------------------------- |
+| Stored in browser    | Stored on server                                        | Stored in database              |
+| Small data           | Can hold server-side state                              | Large persistent data           |
+| Sent with requests   | Identified using session ID                             | Accessed using queries          |
+| User can inspect it  | User normally can't see session data directly           | User doesn't directly access DB |
+| Can have expiration  | Usually temporary/persistent depending on configuration | Persistent                      |
+| Good for preferences | Good for login/session state                            | Good for permanent records      |
+
+
+4. Types of Cookies
+
+There are several important cookie concepts.
+
+1. Session Cookie
+
+Cookie exists until the browser session ends.
+
+Browser opens
+     ↓
+Cookie created
+     ↓
+Browser closed
+     ↓
+Cookie normally removed
+2. Persistent Cookie
+
+Has an expiration time.
+
+Example:
+
+username=Sanoj
+Max-Age=3600
+
+It can remain after the browser is closed until it expires.
+
+3. Secure Cookie
+
+Sent only over HTTPS.
+
+Secure
+4. HttpOnly Cookie
+
+JavaScript cannot normally access it.
+
+HttpOnly
+
+Useful for security-sensitive cookies such as authentication tokens.
+
+5. SameSite Cookie
+
+Controls cross-site sending behavior.
+
+Common values:
+
+Strict
+Lax
+None
+
+5. Create Spring Boot Project
+
+Create a project with:
+
+Spring Web
+Thymeleaf
+Spring Boot DevTools
+
+We don't need MySQL for this particular cookie example because the purpose is to learn browser-side cookie storage.
